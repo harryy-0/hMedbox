@@ -7,7 +7,7 @@
 ENT.RenderGroup = RENDERGROUP_BOTH
 
 	function ENT:DrawTranslucent()
-
+	local ent = self
 
 		if imgui.Entity3D2D(self, Vector(-5, -4, 6), Angle(0, 90, 0), 0.1, 550, 200) then
 
@@ -32,6 +32,7 @@ ENT.RenderGroup = RENDERGROUP_BOTH
 		      if ply:Health() < 100 then
 		     	chat.AddText(Color( 59, 59, 59 ), "Server | ",Color(255,255,255), "You have purchased health, it cost " .. HCONFIG.Currency .. HCONFIG.HealthPrice)
 		     	net.Start( "HP" )
+			net.WriteEntity(ent)			
 		    	net.SendToServer()
 		     else
 		    	chat.AddText(Color( 59, 59, 59 ), "Server | ", Color( 255, 255, 255 ), "You are already full health")
@@ -50,6 +51,7 @@ ENT.RenderGroup = RENDERGROUP_BOTH
 	      if ply:Armor() < 100 then
 	     	chat.AddText(Color( 59, 59, 59 ), "Server | ",Color(255,255,255), "You have purchased armour, it cost "  .. HCONFIG.Currency .. HCONFIG.ArmorPrice)
 	     	net.Start( "Armour" )
+		net.WriteEntity(ent)			
 	    	net.SendToServer()
 	     else
 	    	chat.AddText(Color( 59, 59, 59 ), "Server | ", Color( 255, 255, 255 ), "You are already full armour")
