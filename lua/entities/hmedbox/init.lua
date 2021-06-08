@@ -10,14 +10,18 @@ include("shared.lua")
 
  
 net.Receive( "HP", function( len, ply ) 
-  
+    local ent = net.ReadEntity()
+    if ent:GetPos():Distance(ply:GetPos()) > 500 then return end
     ply:SetHealth(100)
     ply:addMoney(-500)
 
  end )
 
 net.Receive( "Armour", function( len, ply ) 
-  
+    local ent = net.ReadEntity()
+    
+   if ent:GetPos():Distance(ply:GetPos()) > 500 then return end
+
     ply:SetArmor(100)
     ply:addMoney(-500)
 
